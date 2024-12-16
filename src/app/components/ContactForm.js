@@ -59,9 +59,9 @@ const ContactForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="w-full max-w-xl mt-3 mx-auto p-6 rounded bg-gray-800">
-      <div className="mb-6 ">
-        <label htmlFor="username" className="block text-lg font-semibold mb-2">
+    <form onSubmit={handleSubmit} className="w-full max-w-xl mt-3 mx-auto p-6 rounded-lg bg-gray-800">
+      <div className="mb-6">
+        <label htmlFor="username" className="block text-lg font-semibold mb-2 text-white">
           Enter your name
         </label>
         <input
@@ -69,7 +69,7 @@ const ContactForm = () => {
           name="username"
           id="username"
           placeholder="Enter your name"
-          className="w-full p-3 border border-gray-300 rounded-lg text-lg"
+          className="w-full p-3 border border-gray-300 rounded-lg text-lg text-black bg-white"
           value={user.username}
           onChange={handleChange}
           required
@@ -77,7 +77,7 @@ const ContactForm = () => {
       </div>
 
       <div className="mb-6">
-        <label htmlFor="email" className="block text-lg font-semibold mb-2">
+        <label htmlFor="email" className="block text-lg font-semibold mb-2 text-white">
           Email
         </label>
         <input
@@ -85,7 +85,7 @@ const ContactForm = () => {
           name="email"
           id="email"
           placeholder="Enter your email"
-          className="w-full p-3 border border-gray-300 rounded-lg text-lg"
+          className="w-full p-3 border border-gray-300 rounded-lg text-lg text-black bg-white"
           value={user.email}
           onChange={handleChange}
           required
@@ -94,7 +94,7 @@ const ContactForm = () => {
       </div>
 
       <div className="mb-6">
-        <label htmlFor="phone" className="block text-lg font-semibold mb-2">
+        <label htmlFor="phone" className="block text-lg font-semibold mb-2 text-white">
           Phone Number
         </label>
         <input
@@ -102,7 +102,7 @@ const ContactForm = () => {
           name="phone"
           id="phone"
           placeholder="Enter your phone"
-          className="w-full p-3 border border-gray-300 rounded-lg text-lg"
+          className="w-full p-3 border border-gray-300 rounded-lg text-lg text-black bg-white"
           value={user.phone}
           onChange={handleChange}
           required
@@ -111,7 +111,7 @@ const ContactForm = () => {
       </div>
 
       <div className="mb-6">
-        <label htmlFor="message" className="block text-lg font-semibold mb-2">
+        <label htmlFor="message" className="block text-lg font-semibold mb-2 text-white">
           Message
         </label>
         <textarea
@@ -119,7 +119,7 @@ const ContactForm = () => {
           id="message"
           rows="5"
           placeholder="Enter your Message"
-          className="w-full p-3 border border-gray-300 rounded-lg text-lg"
+          className="w-full p-3 border border-gray-300 rounded-lg text-lg text-black bg-white"
           value={user.message}
           onChange={handleChange}
           required

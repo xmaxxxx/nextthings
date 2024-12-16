@@ -14,7 +14,7 @@ const Contact = () => {
                         We'd love to hear <span className="text-blue-600">from you</span>
                     </h2>
 
-                    <ContactForm />
+                    <ContactForm   />
                 </section>
             </div>
         </>
