@@ -23,7 +23,7 @@ const Footer = () => {
                         </Link>
                         <Link href="#" target="_blank" className="text-gray-400 hover:text-white">
                             <FaInstagram />
-                        </Link>
+                      </Link>
                         <Link href="https://www.linkedin.com/in/amritpalsinghx21/" target="_blank" className="text-gray-400 hover:text-white">
                             <FaLinkedinIn />
                         </Link>
