@@ -3,7 +3,7 @@ import HeroSection from './components/HeroSection';
 
 const App = () => {
   return (
-    <div className='bg-[#0A0A0A]'>
+    <div className=''>
       <HeroSection/>
     </div>
     

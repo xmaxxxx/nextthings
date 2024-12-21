@@ -102,12 +102,17 @@ const Projects = () => {
   ];
 
   return (
-    <section id="projects" className="py-20">
-      <div className="max-w-6xl mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">My Projects</h2>
-        <div className="grid md:grid-cols-2 gap-8">
+    <section id="projects" className="py-20 text-gray-100">
+      <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        {/* Section Header */}
+        <h2 className="text-4xl lg:text-5xl font-extrabold text-center text-white mb-10 tracking-tight">
+          My Projects
+        </h2>
+
+        {/* Cards Grid */}
+        <div className="grid lg:grid-cols-3 sm:grid-cols-2 gap-8">
           {projects.map((project) => (
-            <Card 
+            <Card
               key={project.id}
               title={project.title}
               description={project.description}
@@ -123,5 +128,6 @@ const Projects = () => {
     </section>
   );
 };
+
 
 export default Projects;
