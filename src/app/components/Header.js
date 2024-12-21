@@ -13,7 +13,8 @@ const Header = () => {
   return (
     <header className="flex items-center justify-between px-7 py-4 h-50">
       <div className="flex items-center">
-        <h1 className="text-3xl font-bold text-white">Amritpal Singh</h1>
+        <Link href="/"><h1 className="text-3xl font-bold text-white hover:text-lime-400">Amritpal Singh</h1></Link>
+        
       </div>
 
       <nav className="flex justify-between items-center py-4">
