@@ -18,7 +18,7 @@ const ContactCard = () => {
       href="mailto:amritpal29919singh@gmail.com"
       className="text-blue-600 hover:text-blue-800"
     >
-      amritpal29919singh@gmail.com
+      Send an Email <span>&#8594;</span>
     </Link>
 
           </div>
