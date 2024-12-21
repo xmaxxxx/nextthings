@@ -14,9 +14,13 @@ const ContactCard = () => {
             <h2 className="text-xl font-semibold text-gray-800 mb-2">Email</h2>
             <p className="text-gray-600 mb-2">Monday to Friday Expected</p>
             <p className="text-gray-600 mb-4">Response time: 72 hours</p>
-            <Link href="/" className="text-blue-600 hover:text-blue-800">
-              Send Email <span>&#8594;</span>
-            </Link>
+            <Link
+      href="mailto:amritpal29919singh@gmail.com"
+      className="text-blue-600 hover:text-blue-800"
+    >
+      amritpal29919singh@gmail.com
+    </Link>
+
           </div>
 
           {/* Live Chat Card */}
