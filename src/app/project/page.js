@@ -33,7 +33,7 @@ const Projects = () => {
       id: 2,
       title: "MernHub - E-Commerce Platform",
       description: "Full-featured e-commerce platform with Google authentication, admin dashboard, payment integration, and real-time order tracking. Admins can manage products while users enjoy secure payments and live delivery tracking.",
-      image: "/mernhub-preview.jpg",
+      image: "/blinkit.jpg",
       technologies: [
         "Node.js",
         "Express",
@@ -44,7 +44,7 @@ const Projects = () => {
         "Maps API",
         "Admin Dashboard"
       ],
-      liveLink: "https://themernhub.com/users/login",
+      liveLink: "https://blinkit.themernhub.com/users/login",
       githubLink: "#"
     },
     {
