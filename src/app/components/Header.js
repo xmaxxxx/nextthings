@@ -1,48 +1,63 @@
-'use client'
+'use client';
 import Link from 'next/link';
 import { useState } from 'react';
-import { FaBars, FaTimes } from 'react-icons/fa'; // Import icons for the hamburger menu
+import { FaBars, FaTimes } from 'react-icons/fa';
+import dynamic from 'next/dynamic';
+
+// ✅ Dynamically import Tilt (disable SSR to prevent hydration error)
+const Tilt = dynamic(() => import('@jdion/tilt-react').then(mod => mod.Tilt), {
+  ssr: false,
+});
 
 const Header = () => {
-  const [menuOpen, setMenuOpen] = useState(false); // State to track whether the menu is open or closed
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
 
+  const navLinks = [
+    { name: 'Home', href: '/' },
+    { name: 'About', href: '/about' },
+    { name: 'Project', href: '/project' },
+    { name: 'Contact', href: '/contact' },
+  ];
+
+  const tiltOptions = {
+    max: 10,
+    scale: 1.05,
+    speed: 400,
+  };
+
   return (
     <header className="flex items-center justify-between px-7 py-4 h-50">
+      {/* Logo */}
       <div className="flex items-center">
-        <Link href="/"><h1 className="text-3xl font-bold text-white hover:text-lime-400">Amritpal Singh</h1></Link>
-        
+        <Link href="/">
+          <h1 className="text-3xl font-bold text-white hover:text-lime-400">
+            Amritpal Singh
+          </h1>
+        </Link>
       </div>
 
+      {/* Desktop Navigation */}
       <nav className="flex justify-between items-center py-4">
-        {/* Desktop navigation */}
         <ul className="hidden lg:flex items-center gap-9">
-          <li>
-            <Link href="/" className="text-white hover:text-gray-300">
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link href="/about" className="text-white hover:text-gray-300">
-              About
-            </Link>
-          </li>
-          <li>
-            <Link href="/project" className="text-white hover:text-gray-300">
-              Project
-            </Link>
-          </li>
-          <li>
-            <Link href="/contact" className="text-white hover:text-gray-300">
-              Contact
-            </Link>
-          </li>
+          {navLinks.map((link, index) => (
+            <Tilt key={index} options={tiltOptions}>
+              <li>
+                <Link
+                  href={link.href}
+                  className="text-white hover:text-gray-300 transition duration-300"
+                >
+                  {link.name}
+                </Link>
+              </li>
+            </Tilt>
+          ))}
         </ul>
 
-        {/* Mobile menu toggle button */}
+        {/* Hamburger Button */}
         <div className="lg:hidden">
           <button onClick={toggleMenu} className="text-white">
             {menuOpen ? <FaTimes size={30} /> : <FaBars size={30} />}
@@ -50,33 +65,26 @@ const Header = () => {
         </div>
       </nav>
 
-      {/* Mobile menu */}
+      {/* Mobile Navigation */}
       <div
         className={`${
           menuOpen ? 'block' : 'hidden'
         } lg:hidden absolute top-0 left-0 w-full bg-black bg-opacity-80 p-4`}
       >
         <ul className="flex flex-col items-center gap-6">
-          <li>
-            <Link href="/" className="text-white hover:text-gray-300" onClick={toggleMenu}>
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link href="/about" className="text-white hover:text-gray-300" onClick={toggleMenu}>
-              About
-            </Link>
-          </li>
-          <li>
-            <Link href="/project" className="text-white hover:text-gray-300" onClick={toggleMenu}>
-              Project
-            </Link>
-          </li>
-          <li>
-            <Link href="/contact" className="text-white hover:text-gray-300" onClick={toggleMenu}>
-              Contact
-            </Link>
-          </li>
+          {navLinks.map((link, index) => (
+            <Tilt key={index} options={tiltOptions}>
+              <li>
+                <Link
+                  href={link.href}
+                  className="text-white hover:text-gray-300 transition duration-300"
+                  onClick={toggleMenu}
+                >
+                  {link.name}
+                </Link>
+              </li>
+            </Tilt>
+          ))}
         </ul>
       </div>
     </header>
