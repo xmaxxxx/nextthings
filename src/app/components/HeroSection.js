@@ -9,7 +9,7 @@ const HeroSection = () => {
         {/* Left Side: Text Section */}
         <div className="text-center md:text-left">
           <h1 className="text-white text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
-            Hi, I'm Amritpal Singh!
+            Hi, I&apos;m Amritpal Singh!
           </h1>
           <p className="text-white text-base sm:text-lg md:text-xl max-w-md mx-auto md:mx-0">
             A dedicated MERN stack developer with a passion for creating scalable and efficient web applications using technologies like MongoDB, Express.js, React, and Node.js. Let’s build something amazing together!

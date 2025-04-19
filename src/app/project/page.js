@@ -49,6 +49,34 @@ const Projects = () => {
     },
     {
       id: 3,
+      title: "GoalTracker - Personal Goal Management App",
+      description: "A full-stack MERN application that allows users to efficiently manage their personal goals. Users can securely register, log in, and track their goals with features to create, update, and mark them as completed. The app includes user authentication and a clean, responsive interface for seamless productivity.",
+      features: [
+        "User Authentication (Login/Logout)",
+        "Add, Edit, and Delete Goals",
+        "Mark Goals as Completed",
+        "Secure Dashboard for Each User",
+        "Protected Routes & Token-Based Auth",
+        "Fully Responsive Design",
+        "REST API with CRUD Operations"
+      ],
+      image: "/goaltracker.png",
+      technologies: [
+        "React",
+        "Node.js",
+        "MongoDB",
+        "Express.js",
+        "JWT Authentication",
+        "Tailwind CSS",
+        "Mongoose",
+        "React Router"
+      ],
+      liveLink: "https://tracter.themernhub.com/",
+      githubLink: "#"
+    },
+  
+    {
+      id: 4,
       title: "Obys Agency - Creative Portfolio",
       description: "A stunning creative agency portfolio website featuring advanced animations, smooth scrolling, and interactive elements. Built with modern JavaScript and cutting-edge animation libraries for an immersive user experience.",
       features: [
@@ -74,7 +102,7 @@ const Projects = () => {
       githubLink: "#"
     },
     {
-      id: 4,
+      id: 5,
       title: "ARock - Creative React Portfolio",
       description: "A modern and interactive portfolio website built with React and GSAP animations. Features smooth transitions, dynamic content loading, and engaging user interactions throughout the site.",
       features: [
