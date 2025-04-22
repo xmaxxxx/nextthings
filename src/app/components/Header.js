@@ -2,12 +2,6 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
-import dynamic from 'next/dynamic';
-
-// ✅ Dynamically import Tilt (disable SSR to prevent hydration error)
-const Tilt = dynamic(() => import('@jdion/tilt-react').then(mod => mod.Tilt), {
-  ssr: false,
-});
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -23,18 +17,12 @@ const Header = () => {
     { name: 'Contact', href: '/contact' },
   ];
 
-  const tiltOptions = {
-    max: 10,
-    scale: 1.05,
-    speed: 400,
-  };
-
   return (
     <header className="flex items-center justify-between px-7 py-4 h-50">
       {/* Logo */}
       <div className="flex items-center">
         <Link href="/">
-          <h1 className="text-3xl font-bold text-white  hover:text-gray-300">
+          <h1 className="text-3xl font-bold text-white hover:text-gray-300">
             Amritpal Singh
           </h1>
         </Link>
@@ -44,16 +32,14 @@ const Header = () => {
       <nav className="flex justify-between items-center py-4">
         <ul className="hidden lg:flex items-center gap-9">
           {navLinks.map((link, index) => (
-            <Tilt key={index} options={tiltOptions}>
-              <li>
-                <Link
-                  href={link.href}
-                  className="text-white hover:text-gray-300 transition duration-300"
-                >
-                  {link.name}
-                </Link>
-              </li>
-            </Tilt>
+            <li key={index}>
+              <Link
+                href={link.href}
+                className="text-white hover:text-gray-300 transition duration-300"
+              >
+                {link.name}
+              </Link>
+            </li>
           ))}
         </ul>
 
@@ -73,17 +59,15 @@ const Header = () => {
       >
         <ul className="flex flex-col items-center gap-6">
           {navLinks.map((link, index) => (
-            <Tilt key={index} options={tiltOptions}>
-              <li>
-                <Link
-                  href={link.href}
-                  className="text-white hover:text-gray-300 transition duration-300"
-                  onClick={toggleMenu}
-                >
-                  {link.name}
-                </Link>
-              </li>
-            </Tilt>
+            <li key={index}>
+              <Link
+                href={link.href}
+                className="text-white hover:text-gray-300 transition duration-300"
+                onClick={toggleMenu}
+              >
+                {link.name}
+              </Link>
+            </li>
           ))}
         </ul>
       </div>
