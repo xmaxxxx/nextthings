@@ -1,145 +1,99 @@
 'use client'
 
-import { Mulish } from "next/font/google";
-import { useState } from "react";
+import React, { useState } from 'react'
+import { motion } from 'framer-motion'
 
-const mulish = Mulish({
-  subsets: ['latin'],
-  display: 'swap',
-  weight: ['300', '400', '500', '600', '700', '800', '900']
-});
-
-const ContactForm = () => {
+export default function ContactForm() {
   const [user, setUser] = useState({
-    username: "",
-    email: "",
-    phone: "",
-    message: ""
-  });
+    username: '',
+    email: '',
+    phone: '',
+    message: ''
+  })
+  const [status, setStatus] = useState(null)
 
-  const [status, setStatus] = useState(null);
-
-  function handleChange(e) {
-    const name = e.target.name;
-    const value = e.target.value;
-
-    setUser((prevUser) => ({ ...prevUser, [name]: value }));
+  const handleChange = e => {
+    setUser(prev => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
+  const handleSubmit = async e => {
+    e.preventDefault()
     try {
-      const response = await fetch('/api/contact', {
+      const res = await fetch('/api/contact', {
         method: 'POST',
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          username: user.username,
-          email: user.email,
-          phone: user.phone,
-          message: user.message
-        })
-      });
-
-      if (response.status === 200) {
-        setUser({
-          username: "",
-          email: "",
-          phone: "",
-          message: ""
-        });
-        setStatus('success');
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(user)
+      })
+      if (res.ok) {
+        setStatus('success')
+        setUser({ username: '', email: '', phone: '', message: '' })
       } else {
-        setStatus('error');
+        setStatus('error')
       }
-
-    } catch (e) {
-      console.log(e);
+    } catch {
+      setStatus('error')
     }
-  };
+  }
 
   return (
-    <form onSubmit={handleSubmit} className="w-full max-w-xl mt-3 mx-auto p-6 rounded-lg bg-gray-800">
-      <div className="mb-6">
-        <label htmlFor="username" className="block text-lg font-semibold mb-2 text-white">
-          Enter your name
-        </label>
-        <input
-          type="text"
-          name="username"
-          id="username"
-          placeholder="Enter your name"
-          className="w-full p-3 border border-gray-300 rounded-lg text-lg text-black bg-white"
-          value={user.username}
-          onChange={handleChange}
-          required
-        />
-      </div>
+    <motion.form
+      onSubmit={handleSubmit}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4 }}
+      className="w-full bg-gray-800 p-8 rounded-2xl shadow-lg"
+    >
+      {status === 'success' && (
+        <p className="mb-4 text-green-400">✅ Thanks for your message! I’ll be in touch soon.</p>
+      )}
+      {status === 'error' && (
+        <p className="mb-4 text-red-400">⚠️ Something went wrong. Please try again.</p>
+      )}
+
+      {[
+        { label: 'Name', name: 'username', type: 'text', placeholder: 'Your full name' },
+        { label: 'Email', name: 'email', type: 'email', placeholder: 'you@domain.com' },
+        { label: 'Phone', name: 'phone', type: 'tel', placeholder: '+1 234 567‑8901' }
+      ].map(field => (
+        <div key={field.name} className="mb-6">
+          <label htmlFor={field.name} className="block text-sm font-medium mb-2">
+            {field.label}
+          </label>
+          <input
+            id={field.name}
+            name={field.name}
+            type={field.type}
+            placeholder={field.placeholder}
+            required
+            value={user[field.name]}
+            onChange={handleChange}
+            className="w-full px-4 py-3 bg-white text-gray-800 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400 transition"
+          />
+        </div>
+      ))}
 
       <div className="mb-6">
-        <label htmlFor="email" className="block text-lg font-semibold mb-2 text-white">
-          Email
-        </label>
-        <input
-          type="email"
-          name="email"
-          id="email"
-          placeholder="Enter your email"
-          className="w-full p-3 border border-gray-300 rounded-lg text-lg text-black bg-white"
-          value={user.email}
-          onChange={handleChange}
-          required
-          autoComplete="off"
-        />
-      </div>
-
-      <div className="mb-6">
-        <label htmlFor="phone" className="block text-lg font-semibold mb-2 text-white">
-          Phone Number
-        </label>
-        <input
-          type="number"
-          name="phone"
-          id="phone"
-          placeholder="Enter your phone"
-          className="w-full p-3 border border-gray-300 rounded-lg text-lg text-black bg-white"
-          value={user.phone}
-          onChange={handleChange}
-          required
-          autoComplete="off"
-        />
-      </div>
-
-      <div className="mb-6">
-        <label htmlFor="message" className="block text-lg font-semibold mb-2 text-white">
+        <label htmlFor="message" className="block text-sm font-medium mb-2">
           Message
         </label>
         <textarea
-          name="message"
           id="message"
+          name="message"
           rows="5"
-          placeholder="Enter your Message"
-          className="w-full p-3 border border-gray-300 rounded-lg text-lg text-black bg-white"
+          placeholder="Tell me what’s on your mind..."
+          required
           value={user.message}
           onChange={handleChange}
-          required
-          autoComplete="off"
+          className="w-full px-4 py-3 bg-white text-gray-800 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400 transition"
         />
       </div>
 
-      <div>
-        {status === 'success' && <p className="text-green-500 mb-4">Thank you for your message!</p>}
-        {status === 'error' && <p className="text-red-500 mb-4">There was an error submitting your message. Please try again.</p>}
-
-        <button
-          type="submit"
-          className="w-full p-3 bg-green-500 text-white text-lg rounded-lg hover:bg-green-600 focus:outline-none"
-        >
-          Send Message
-        </button>
-      </div>
-    </form>
-  );
-};
-
-export default ContactForm;
+      <button
+        type="submit"
+        className="w-full py-3 bg-green-500 hover:bg-green-600 rounded-lg text-white font-semibold transition"
+      >
+        Send Message
+      </button>
+    </motion.form>
+  )
+}
