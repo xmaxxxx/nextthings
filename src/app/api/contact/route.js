@@ -1,6 +1,5 @@
 import dbConn from "@/utils/dbconn";
 import Contact from "@/models/contact";
-import { Resend } from "resend";
 
 export async function POST(req) {
     try {
