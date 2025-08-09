@@ -3,6 +3,29 @@ import Card from '../components/card';
 const Projects = () => {
   const projects = [
     {
+      id: 99,
+      title: "Lawyer Booking App",
+      description: "A modern web application for booking appointments with lawyers. Users can browse lawyer profiles, check availability, and book consultations online. Built for seamless scheduling and professional service.",
+      features: [
+        "Browse lawyer profiles",
+        "Check availability",
+        "Book appointments online",
+        "Responsive design",
+        "User authentication",
+        "Easy scheduling"
+      ],
+      image: "/lawyer.png", 
+      technologies: [
+        "Next.js",
+        "React",
+        "Node.js",
+        "MongoDB",
+        "Tailwind CSS"
+      ],
+      liveLink: "https://lawyer-booking-app.vercel.app/",
+      githubLink: "#"
+    },
+    {
       id: 1,
       title: "CineX - Movie Streaming Platform",
       description: "A comprehensive movie streaming platform featuring multiple categories including Trending, Popular, Movies, TV Shows, and Person profiles. Users can explore detailed information about movies, TV shows, and cast members. Built with MERN stack, featuring Redux for state management and Axios for API integration.",

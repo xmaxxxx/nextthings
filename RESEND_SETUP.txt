@@ -1,0 +1,4 @@
+// 1. Go to https://resend.com and sign up for a free account.
+// 2. Get your API key from the Resend dashboard.
+// 3. Add it to your .env.local file as:
+// RESEND_API_KEY=your_resend_api_key

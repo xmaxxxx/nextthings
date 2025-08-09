@@ -8,38 +8,26 @@ export const metadata = {
 
 const Footer = () => {
     return (
-        <footer className="text-white py-10">
-            <div className="max-w-6xl mx-auto px-4">
+        <footer className="text-white py-10 bg-background border-t border-gray-800">
+            <div className="max-w-6xl mx-auto px-6">
                 <div className="flex flex-col sm:flex-row justify-between items-center mb-6">
-                    <div className="text-xl font-semibold mb-4 sm:mb-0">
+                    <div className="text-2xl font-extrabold mb-4 sm:mb-0 tracking-tight">
                         <span>Amritpal Singh</span>
                     </div>
                     <div className="flex space-x-6">
-                        <Link href="#" className="text-gray-400 hover:text-white">
-                            <FaFacebookF />
-                        </Link>
-                        <Link href="#" className="text-gray-400 hover:text-white">
-                            <FaTwitter />
-                        </Link>
-                        <Link href="#" target="_blank" className="text-gray-400 hover:text-white">
-                            <FaInstagram />
-                      </Link>
-                        <Link href="https://www.linkedin.com/in/amritpalsinghx21/" target="_blank" className="text-gray-400 hover:text-white">
-                            <FaLinkedinIn />
-                        </Link>
-                        <Link href="#" className="text-gray-400 hover:text-white">
-                            <FaYoutube />
-                        </Link>
+                        <Link href="#" className="text-gray-400 hover:text-blue-400 transition-colors duration-200"><FaFacebookF /></Link>
+                        <Link href="#" className="text-gray-400 hover:text-blue-400 transition-colors duration-200"><FaTwitter /></Link>
+                        <Link href="#" target="_blank" className="text-gray-400 hover:text-pink-400 transition-colors duration-200"><FaInstagram /></Link>
+                        <Link href="https://www.linkedin.com/in/amritpalsinghx21/" target="_blank" className="text-gray-400 hover:text-blue-400 transition-colors duration-200"><FaLinkedinIn /></Link>
+                        <Link href="#" className="text-gray-400 hover:text-red-500 transition-colors duration-200"><FaYoutube /></Link>
                     </div>
                 </div>
-            </div>
-
-            <div className="text-gray-400 py-4">
-                <div className="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center">
-                    <span className="text-sm mb-4 sm:mb-0">
-                        Copyright © 2024 <Link href="/" className="text-white hover:text-blue-500">Amritpal Singh</Link>. All rights reserved
-                    </span>
-                    
+                <div className="text-gray-400 py-4 border-t border-gray-700">
+                    <div className="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row justify-between items-center">
+                        <span className="text-sm mb-4 sm:mb-0">
+                            Copyright © 2024 <Link href="/" className="text-white hover:text-blue-400">Amritpal Singh</Link>. All rights reserved
+                        </span>
+                    </div>
                 </div>
             </div>
         </footer>
