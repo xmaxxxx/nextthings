@@ -6,7 +6,10 @@ import * as THREE from "three";
 export default function IntroLanding({ onFinish }) {
   const headlineRef = useRef(null);
   const [showButton, setShowButton] = useState(false);
+  const [countdown, setCountdown] = useState(3);
+  const [exiting, setExiting] = useState(false);
   const threeRef = useRef(null);
+  const containerRef = useRef(null);
 
   useEffect(() => {
     gsap.fromTo(
@@ -14,7 +17,22 @@ export default function IntroLanding({ onFinish }) {
       { y: 80, opacity: 0 },
       { y: 0, opacity: 1, duration: 1.2, ease: "power3.out" }
     );
-    const timer = setTimeout(() => setShowButton(true), 1800);
+    const showBtnTimer = setTimeout(() => setShowButton(true), 1800);
+
+    // Countdown timer
+    let countdownTimer;
+    if (showButton) {
+      countdownTimer = setInterval(() => {
+        setCountdown(prev => {
+          if (prev <= 1) {
+            clearInterval(countdownTimer);
+            handleEnter();
+            return 0;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+    }
 
     // Three.js setup
     let renderer, scene, camera, stars = [];
@@ -53,33 +71,60 @@ export default function IntroLanding({ onFinish }) {
     }
 
     return () => {
-      clearTimeout(timer);
+      clearTimeout(showBtnTimer);
+      clearInterval(countdownTimer);
       if (renderer && threeRef.current) {
         threeRef.current.removeChild(renderer.domElement);
         renderer.dispose();
       }
     };
-  }, []);
+    // eslint-disable-next-line
+  }, [showButton]);
+
+  // GSAP exit animation and enter
+  const handleEnter = () => {
+    if (exiting) return;
+    setExiting(true);
+    if (containerRef.current) {
+      gsap.to(containerRef.current, {
+        y: -80,
+        opacity: 0,
+        duration: 0.7,
+        ease: "power2.inOut",
+        onComplete: () => {
+          onFinish();
+        }
+      });
+    } else {
+      onFinish();
+    }
+  };
 
   return (
-    <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-gradient-to-br from-blue-900 via-background to-gray-900">
+    <div ref={containerRef} className="fixed inset-0 z-50 flex flex-col items-center justify-center overflow-hidden transition-all">
+      {/* Modern Animated Gradient Background */}
+  <div className="absolute inset-0 w-full h-full z-0 animate-gradient" />
       <div ref={threeRef} className="absolute inset-0 w-full h-full z-0" style={{ pointerEvents: 'none' }} />
       <h1
         ref={headlineRef}
-        className="relative z-10 text-5xl sm:text-7xl font-extrabold text-white mb-8 drop-shadow-xl text-center"
+        className="relative z-10 text-5xl sm:text-7xl font-extrabold mb-8 leading-tight text-white drop-shadow-2xl text-center tracking-tight"
       >
-        Welcome to My Portfolio
+        <span className="bg-gradient-to-r from-blue-500 via-blue-700 to-cyan-400 bg-clip-text text-transparent">Welcome to My Portfolio</span>
       </h1>
-      <p className="relative z-10 text-lg sm:text-2xl text-gray-300 mb-12 text-center max-w-xl">
+      <p className="relative z-10 text-lg sm:text-2xl text-blue-100 mb-8 text-center max-w-xl font-medium">
         Discover my work, skills, and projects as a passionate MERN stack developer.
       </p>
       {showButton && (
-        <button
-          onClick={onFinish}
-          className="relative z-10 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-10 rounded-xl shadow-lg transition-all duration-300 text-lg"
-        >
-          Enter Portfolio
-        </button>
+        <div className="relative z-10 flex flex-col items-center">
+          <button
+            onClick={handleEnter}
+            className="bg-gradient-to-r from-blue-700 via-blue-900 to-cyan-500 hover:from-blue-800 hover:to-cyan-400 text-white font-bold py-3 px-10 rounded-2xl shadow-xl transition-all duration-300 text-lg mb-3"
+            disabled={exiting}
+          >
+            Enter Portfolio
+          </button>
+          <span className="text-blue-200 text-base font-semibold">Auto entering in {countdown} sec...</span>
+        </div>
       )}
     </div>
   );

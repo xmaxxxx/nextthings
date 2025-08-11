@@ -1,3 +1,21 @@
+/* Animated gradient background for intro page */
+ .animate-gradient {
+  background: linear-gradient(120deg, #171D2A 0%, #1e3a8a 50%, #2563eb 100%);
+  background-size: 200% 200%;
+  animation: gradientMove 6s ease-in-out infinite;
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
 /* Custom scrollbar for card inner content */
 .custom-scrollbar::-webkit-scrollbar {
   width: 6px;
